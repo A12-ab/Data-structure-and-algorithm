@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& ar, int target) {
+        int n=ar.size();
+        vector<vector<int>>ans;
+        sort(ar.begin(),ar.end());
+        for(int i=0; i<n; i++){
+            if(i>0 && ar[i]==ar[i-1]) continue;
+            for(int j=i+1; j<n;){
+                int p=j+1,q=n-1;
+                while(p<q){
+                    long long sum=(long long)ar[i]+(long long)ar[j]+(long long)ar[p]+(long long)ar[q];
+                    if(sum>target){
+                        q--;
+                    }else if(sum<target){
+                        p++;
+                    }else{
+                        ans.push_back({ar[i],ar[j],ar[p],ar[q]});
+                        p++;
+                        q--;
+                        while(p<q && ar[p]==ar[p-1]) p++;
+                    }
+                }
+                j++;
+                while(j<n-1 && ar[j]==ar[j-1]) j++;
+            }
+
+        }
+        return ans;
+        
+    }
+};
