@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int bs(vector<int>&ar, int t,int st, int en){
+        if(st<=en){
+           int mid=st+(en-st)/2;
+           if(ar[mid]==t){
+             return mid;
+           }
+           else if(ar[mid]<t){
+             return bs(ar,t,mid+1,en);
+           }else{
+            return bs(ar,t,st,mid-1);
+           } 
+        }
+        return -1;
+        
+        
+    }
+    int search(vector<int>& nums, int target) {
+        int n=nums.size();
+        int ans=bs(nums,target,0,n-1);
+        return ans;
+        
+    }
+};
